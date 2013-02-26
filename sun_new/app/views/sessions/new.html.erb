@@ -1,0 +1,8 @@
+<%= form_tag register_path do %>
+<lable for="login">Login</lable>
+<%= text_field_tag :login,params[:lohin] %>
+<lable for="possword">Possword</lable>
+<%= password_field_tag :password, params[:password] %>
+
+<%= submit_tag "Register" %>
+<% end %>

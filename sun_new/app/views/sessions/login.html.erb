@@ -1,0 +1,10 @@
+<h1>Admin Login</h1>
+<%= form_tag sessions_path do %>
+<lable for="login">Login</lable>
+<%= text_field_tag :login,params[:lohin] %>
+<lable for="possword">Possword</lable>
+<%= password_field_tag :password, params[:password] %>
+
+<%= submit_tag "Login" %>
+<% end %>
+<%= link_to 'zhuce',new_session_path %>
