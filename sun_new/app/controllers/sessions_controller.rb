@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
     @user = User.authentication(params[:login], params[:password])
     if @user
       session[:user_id] = @user.id
+      session[:user_name] = @user.login
       flash[:notice] = "welcome #{@user.login}"
       redirect_to posts_path
     else

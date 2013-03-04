@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.paginate(:page=>params[:page]||1,:per_page=>3)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -40,7 +40,8 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(params[:post])
+    post_new=params[:post].merge({:user=>session[:user_name]})
+    @post = Post.new(post_new)
 
     respond_to do |format|
       if @post.save
