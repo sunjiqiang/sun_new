@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
+  caches_action :edit
   def index
     @posts = Post.paginate(:page=>params[:page]||1,:per_page=>3)
 
@@ -40,6 +41,8 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    expire_page :action => :index
+    expire_action :action => :edit
     post_new=params[:post].merge({:user=>session[:user_name]})
     @post = Post.new(post_new)
 
