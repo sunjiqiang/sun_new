@@ -25,5 +25,10 @@ class SessionsController < ApplicationController
       redirect_to login_path
     end
   end
+  def exit_now
+     session[:user_id] = nil
+     session[:user_name] = nil
+     redirect_to posts_path
+  end
   
 end

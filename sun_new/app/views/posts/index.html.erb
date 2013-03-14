@@ -1,16 +1,25 @@
+<% if session[:user_name] == nil %>
+<%= link_to 'login',login_path %>
+<%= link_to 'zhuce',new_session_path %>
+<% end %>
+<% if session[:user_name]!=nil %> 
+<%= link_to 'exit',exit_now_path %>
+<% end %>
 <h1>Recent posts</h1>
 
 
 <% @posts.each do |post| %>
 
 <%= render :partial => post %>
+ <% if session[:user_name] == post.user %>
     <td><%= link_to 'Edit', edit_post_path(post) %></td>
     <td><%= link_to 'Destroy', post, :method=>:delete, :data=> { :confirm=> 'Are you sure?' } %></td>
- 
+ <% end %>
 <% end %>
 <div class="flickr_pagination"> 
  <%= will_paginate @posts %> 
 </div> 
 <br />
-
+<% if session[:user_name]!=nil %>
 <%= link_to 'New Post', new_post_path %>
+<% end %>

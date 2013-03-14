@@ -6,6 +6,7 @@ SunNew::Application.routes.draw do
   end
    match 'sessions/login'=>'sessions#login',:as=>:login
   match 'sessions/register'=>'sessions#register',:as=>:register
+  match 'sessions/exit_now'=>'sessions#exit_now',:as=>:exit_now
   resources :sessions 
    
   
@@ -58,7 +59,7 @@ SunNew::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'sessions#login'
+  root :to => 'posts#index'
 
   # See how all your routes lay out with "rake routes"
 

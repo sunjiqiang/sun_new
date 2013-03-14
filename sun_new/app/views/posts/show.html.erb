@@ -17,7 +17,11 @@
   <%= f.label :content, "New Comment" %>
   <%= f.text_area :content %>
 </p>
+<% if session[:user_name] != nil %> 
 <p><%= f.submit "Add comment" %></p>
 <% end %>
+<% end %>
+<% if session[:user_name] == @post.user  %> 
 <%= link_to 'Edit', edit_post_path(@post) %> |
+<% end %>
 <%= link_to 'Back', posts_path %>
