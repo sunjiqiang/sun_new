@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
  attr_accessible :password, :login, :salt
   validates :login, :presence => true
-  
+ has_many :posts 
   def password
     @password
   end

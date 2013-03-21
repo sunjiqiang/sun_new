@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
-  caches_action :edit
+ # caches_action :edit
   def index
     @posts = Post.paginate(:page=>params[:page]||1,:per_page=>3)
 
@@ -41,15 +41,15 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    expire_page :action => :index
-    expire_action :action => :edit
-    post_new=params[:post].merge({:user=>session[:user_name]})
+   # expire_page :action => :index
+   # expire_action :action => :edit
+    post_new=params[:post].merge({:user_id=>session[:user_id]})
     @post = Post.new(post_new)
 
     respond_to do |format|
       if @post.save
         Attachment.create(:attachment => params[:attachment],:post_id => @post.id) if params[:attachment]
-        format.html { redirect_to @post, :notice => 'Post was successfully created.' }
+       format.html { redirect_to @post, :notice => 'Post was successfully created.' }
         format.json { render :json => @post, :status => :created, :location => @post }
       else
         format.html { render :action => "new" }

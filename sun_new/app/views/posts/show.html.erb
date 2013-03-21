@@ -21,7 +21,7 @@
 <p><%= f.submit "Add comment" %></p>
 <% end %>
 <% end %>
-<% if session[:user_name] == @post.user  %> 
+<% if session[:user_id] == @post.user_id && @post.user != nil %> 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <% end %>
 <%= link_to 'Back', posts_path %>

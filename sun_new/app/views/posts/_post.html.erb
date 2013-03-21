@@ -4,6 +4,8 @@
 <% post.attachments.each do |attachment|%>
 <%= image_tag attachment.attachment.url(:thumb) %>
 <% end %>
-Author:<%= post.user %>
+<% if post.user != nil%>
+Author:<%=User.find(post.user_id).login %>
+<% end %>
 
 </div>

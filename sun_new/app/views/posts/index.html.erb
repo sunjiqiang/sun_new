@@ -1,17 +1,17 @@
-<% if session[:user_name] == nil %>
+<% if session[:user_id] == nil %>
 <%= link_to 'login',login_path %>
 <%= link_to 'zhuce',new_session_path %>
 <% end %>
-<% if session[:user_name]!=nil %> 
+<% if session[:user_id]!=nil %> 
 <%= link_to 'exit',exit_now_path %>
 <% end %>
-<h1>Recent  posts</h1>
+<h1>Recent posts</h1>
 
 
 <% @posts.each do |post| %>
 
 <%= render :partial => post %>
- <% if session[:user_name] == post.user %>
+ <% if authen_user(post.user_id) %>
     <td><%= link_to 'Edit', edit_post_path(post) %></td>
     <td><%= link_to 'Destroy', post, :method=>:delete, :data=> { :confirm=> 'Are you sure?' } %></td>
  <% end %>
@@ -20,6 +20,6 @@
  <%= will_paginate @posts %> 
 </div> 
 <br />
-<% if session[:user_name]!=nil %>
+<% if session[:user_id]!=nil %>
 <%= link_to 'New Post', new_post_path %>
 <% end %>
