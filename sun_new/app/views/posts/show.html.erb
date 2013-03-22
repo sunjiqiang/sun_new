@@ -5,7 +5,7 @@
 <% @post.comments.each do |comment|%>
 <div id="comment">
 <p>
-<strong>Commented: <%= comment.created_at %>  Author:<%= comment.user %></strong>
+<strong>Commented: <%= comment.created_at %>  Author:<%= User.find(comment.user_id).login %></strong>
 <br />
 <%= comment.content %>
 </p>

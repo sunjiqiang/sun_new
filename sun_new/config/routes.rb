@@ -1,9 +1,11 @@
 SunNew::Application.routes.draw do
   
+   match 'posts/my_posts'=>'posts#my_posts',:as=>:my_posts 
 
-  resources :posts do 
-      resources :comments
+  resources :posts do
+           resources :comments
   end
+   
    match 'sessions/login'=>'sessions#login',:as=>:login
   match 'sessions/register'=>'sessions#register',:as=>:register
   match 'sessions/exit_now'=>'sessions#exit_now',:as=>:exit_now

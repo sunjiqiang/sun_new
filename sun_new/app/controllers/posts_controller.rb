@@ -85,4 +85,8 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def my_posts
+      @posts = Post.paginate(:page=>params[:page]||1,:per_page=>3).find_all_by_user_id(session[:user_id])
+      render :index 
+  end
 end
